@@ -8,7 +8,7 @@
 #include "IStat.h"
 #include <malloc.h>
 using namespace std;
-class Population : public IStat{ // наследник 
+class Population : public IStat<double> { // наследник 
 public:
 	Population(int i) {
 		data = new double[i];
@@ -36,12 +36,12 @@ double* Population::getValue() {
 	return data;
 }
 
-double Population::calculateGrowth(){
+double Population::calculateGrowth() {
 	double s = data[0];
 	int len = _msize(data) / sizeof(data[0]);
 	double f = data[len - 1];
 	int y = len;
-	return (pow(f / s, 1.0/y) - 1) * 100;
+	return (pow(f / s, 1.0 / y) - 1) * 100;
 }
 void Population::readData(string puth) {
 	ifstream out;
