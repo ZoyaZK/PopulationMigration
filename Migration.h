@@ -51,6 +51,13 @@ int** Migration::getValue() {
 	return data_m;
 }
 
+double Migration::calculateGrowth() {
+	int s = data[0]- data[16];
+	int len = _msize(data) / sizeof(data[0])/2;
+	int f = data[len - 1]- data[_msize(data) / sizeof(data[0]) - 1];
+	int y = len;
+	return (pow(f / s, 1.0 / y) - 1) * 100;
+}
 void Migration::readData(string puth) {
 	ifstream out;
 	out.open(puth);      // открываем файл для записи
